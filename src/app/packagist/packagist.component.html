@@ -1,0 +1,50 @@
+<h2>Packagist repo stats</h2>
+<form>
+    <md-input-container>
+        <input mdInput placeholder="Provide package name" [(ngModel)]="packageName" name="packageName">
+    </md-input-container>
+
+    <md-input-container>
+        <input mdInput [mdDatepicker]="picker_from" placeholder="Choose a start date" [(ngModel)]="fromDate" name="fromDate">
+        <button mdSuffix [mdDatepickerToggle]="picker_from"></button>
+        <md-datepicker #picker_from></md-datepicker>
+    </md-input-container>
+
+    <md-input-container>
+        <input mdInput [mdDatepicker]="picker_to" placeholder="Choose a end date" [(ngModel)]="toDate" name="toDate">
+        <button mdSuffix [mdDatepickerToggle]="picker_to"></button>
+        <md-datepicker #picker_to></md-datepicker>
+    </md-input-container>
+
+    <md-select placeholder="Choose grouping" [(ngModel)]="grouping" name="grouping">
+        <md-option *ngFor="let possibleGrouping of possibleGroupings" [value]="possibleGrouping.value">
+            {{possibleGrouping.label}}
+        </md-option>
+    </md-select>
+
+    <br>
+
+    <button md-raised-button (click)="check()">Check</button>
+</form>
+
+<div *ngIf="poolCounter" class="progress">
+    <md-progress-bar [value]="(100 * poolCounter.step / poolCounter.max)">aaa</md-progress-bar>
+    {{poolCounter.step}} of {{poolCounter.max}}
+</div>
+
+<table *ngIf="versions">
+    <thead>
+        <tr>
+            <th>version</th>
+            <th>downloads</th>
+            <th>%</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let version of versions">
+            <td>{{version.version}}</td>
+            <td>{{version.downloads}}</td>
+            <td>{{(100 * version.downloads / totalDownloads) | number:'1.2-2'}}</td>
+        </tr>
+    </tbody>
+</table>
