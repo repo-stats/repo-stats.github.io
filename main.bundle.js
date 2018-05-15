@@ -55,15 +55,15 @@ var AppComponent = (function () {
     function AppComponent() {
         this.title = 'repo-stats';
     }
+    AppComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-root',
+            template: __webpack_require__("../../../../../src/app/app.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
+        })
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'app-root',
-        template: __webpack_require__("../../../../../src/app/app.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
-    })
-], AppComponent);
 
 //# sourceMappingURL=app.component.js.map
 
@@ -101,33 +101,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var AppModule = (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__packagist_packagist_component__["a" /* PackagistComponent */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["b" /* MdDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["c" /* MdInputModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["d" /* MdNativeDateModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MdSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MdButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MdProgressBarModule */],
+            ],
+            exports: [],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_8__packagist_packagist_service__["a" /* PackagistService */],
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]],
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
-        declarations: [
-            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__packagist_packagist_component__["a" /* PackagistComponent */],
-        ],
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["b" /* MdDatepickerModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["c" /* MdInputModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["d" /* MdNativeDateModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MdSelectModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MdButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MdProgressBarModule */],
-        ],
-        exports: [],
-        providers: [
-            __WEBPACK_IMPORTED_MODULE_8__packagist_packagist_service__["a" /* PackagistService */],
-        ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]],
-    })
-], AppModule);
 
 //# sourceMappingURL=app.module.js.map
 
@@ -295,18 +295,18 @@ var PackagistComponent = (function () {
         }
         return groupedVersion;
     };
+    PackagistComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-packagist',
+            template: __webpack_require__("../../../../../src/app/packagist/packagist.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/packagist/packagist.component.scss")]
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__packagist_service__["a" /* PackagistService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__packagist_service__["a" /* PackagistService */]) === "function" && _a || Object])
+    ], PackagistComponent);
     return PackagistComponent;
+    var _a;
 }());
-PackagistComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'app-packagist',
-        template: __webpack_require__("../../../../../src/app/packagist/packagist.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/packagist/packagist.component.scss")]
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__packagist_service__["a" /* PackagistService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__packagist_service__["a" /* PackagistService */]) === "function" && _a || Object])
-], PackagistComponent);
 
-var _a;
 //# sourceMappingURL=packagist.component.js.map
 
 /***/ }),
@@ -340,17 +340,27 @@ var PackagistService = (function () {
     };
     PackagistService.prototype.getPackageVersionDownloads = function (name, version, from, to) {
         return this.http.get("https://packagist.org/packages/" + name + "/stats/" + version + ".json?average=daily&from=" + from + "&to=" + to).map(function (data) {
-            return data.values.reduce(function (a, b) { return a + b; }, 0);
+            return data.values
+                .map(function (a) {
+                if (!a) {
+                    return 0;
+                }
+                if (typeof a === "string") {
+                    return parseInt(a, 10);
+                }
+                return a;
+            })
+                .reduce(function (a, b) { return a + b; }, 0);
         });
     };
+    PackagistService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
+    ], PackagistService);
     return PackagistService;
+    var _a;
 }());
-PackagistService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
-], PackagistService);
 
-var _a;
 //# sourceMappingURL=packagist.service.js.map
 
 /***/ }),
@@ -364,7 +374,6 @@ var _a;
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-// The file contents for the current environment will overwrite these during build.
 var environment = {
     production: false
 };
