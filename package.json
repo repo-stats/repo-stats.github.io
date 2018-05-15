@@ -1,7 +1,9 @@
 {
   "name": "repo-stats",
   "version": "0.0.0",
-  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
