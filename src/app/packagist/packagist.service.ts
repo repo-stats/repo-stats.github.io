@@ -34,7 +34,19 @@ export class PackagistService {
     return this.http.get(
       `https://packagist.org/packages/${name}/stats/${version}.json?average=daily&from=${from}&to=${to}`
     ).map((data: any): number => {
-      return data.values.reduce((a: number, b: number): number => a + b, 0);
+      return data.values
+        .map((a: null | undefined | string | number): number => {
+          if (!a) {
+            return 0;
+          }
+
+          if (typeof a === "string") {
+            return parseInt(a, 10);
+          }
+
+          return a;
+        })
+        .reduce((a: number, b: number): number => a + b, 0);
     });
   }
 }
