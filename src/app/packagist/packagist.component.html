@@ -1,34 +1,37 @@
 <h2>Packagist repo stats</h2>
 <form>
-    <md-input-container>
-        <input mdInput placeholder="Provide package name" [(ngModel)]="packageName" name="packageName">
-    </md-input-container>
+    <mat-input-container>
+        <input matInput placeholder="Provide package name" [(ngModel)]="packageName" name="packageName">
+    </mat-input-container>
 
-    <md-input-container>
-        <input mdInput [mdDatepicker]="picker_from" placeholder="Choose a start date" [(ngModel)]="fromDate" name="fromDate">
-        <button mdSuffix [mdDatepickerToggle]="picker_from"></button>
-        <md-datepicker #picker_from></md-datepicker>
-    </md-input-container>
+    <mat-input-container>
+        <input matInput [matDatepicker]="picker_from" placeholder="Choose a start date" [(ngModel)]="fromDate" name="fromDate">
+        <mat-datepicker-toggle matSuffix [for]="picker_from"></mat-datepicker-toggle>
+        <mat-datepicker #picker_from></mat-datepicker>
+    </mat-input-container>
 
-    <md-input-container>
-        <input mdInput [mdDatepicker]="picker_to" placeholder="Choose a end date" [(ngModel)]="toDate" name="toDate">
-        <button mdSuffix [mdDatepickerToggle]="picker_to"></button>
-        <md-datepicker #picker_to></md-datepicker>
-    </md-input-container>
+    <mat-input-container>
+        <input matInput [matDatepicker]="picker_to" placeholder="Choose a end date" [(ngModel)]="toDate" name="toDate">
+        <mat-datepicker-toggle matSuffix [for]="picker_to"></mat-datepicker-toggle>
+        <mat-datepicker #picker_to></mat-datepicker>
+    </mat-input-container>
 
-    <md-select placeholder="Choose grouping" [(ngModel)]="grouping" name="grouping">
-        <md-option *ngFor="let possibleGrouping of possibleGroupings" [value]="possibleGrouping.value">
-            {{possibleGrouping.label}}
-        </md-option>
-    </md-select>
+    <mat-form-field>
+        <mat-label>Choose grouping</mat-label>
+        <mat-select [(value)]="grouping">
+            <mat-option *ngFor="let possibleGrouping of possibleGroupings" [value]="possibleGrouping.value">
+                {{possibleGrouping.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
     <br>
 
-    <button md-raised-button (click)="check()">Check</button>
+    <button mat-raised-button (click)="check()">Check</button>
 </form>
 
 <div *ngIf="poolCounter" class="progress">
-    <md-progress-bar [value]="(100 * poolCounter.step / poolCounter.max)">aaa</md-progress-bar>
+    <mat-progress-bar [value]="(100 * poolCounter.step / poolCounter.max)">aaa</mat-progress-bar>
     {{poolCounter.step}} of {{poolCounter.max}}
 </div>
 

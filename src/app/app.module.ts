@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MdDatepickerModule,
-  MdInputModule,
-  MdNativeDateModule,
-  MdSelectModule,
-  MdButtonModule,
-  MdProgressBarModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatButtonModule,
+  MatProgressBarModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -26,12 +27,13 @@ import { PackagistService } from './packagist/packagist.service';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    MdDatepickerModule,
-    MdInputModule,
-    MdNativeDateModule,
-    MdSelectModule,
-    MdButtonModule,
-    MdProgressBarModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatProgressBarModule,
   ],
   exports: [
   ],
