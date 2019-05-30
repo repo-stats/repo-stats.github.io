@@ -1,0 +1,60 @@
+<h2>access-log repo stats</h2>
+<form>
+    <mat-input-container>
+        <input matInput readonly placeholder="Provide package name" [(ngModel)]="packageName" name="packageName">
+    </mat-input-container>
+
+    <mat-input-container>
+        <input matInput readonly [matDatepicker]="picker_from" placeholder="Choose a start date" [(ngModel)]="fromDate" name="fromDate">
+        <mat-datepicker-toggle matSuffix [for]="picker_from"></mat-datepicker-toggle>
+        <mat-datepicker #picker_from></mat-datepicker>
+    </mat-input-container>
+
+    <mat-input-container>
+        <input matInput readonly [matDatepicker]="picker_to" placeholder="Choose a end date" [(ngModel)]="toDate" name="toDate">
+        <mat-datepicker-toggle matSuffix [for]="picker_to"></mat-datepicker-toggle>
+        <mat-datepicker #picker_to></mat-datepicker>
+    </mat-input-container>
+
+    <mat-form-field>
+        <mat-label>Choose grouping</mat-label>
+        <mat-select [(value)]="grouping">
+            <mat-option *ngFor="let possibleGrouping of possibleGroupings" [value]="possibleGrouping.value">
+                {{possibleGrouping.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button (click)="check()">Check</button>
+</form>
+
+<div *ngIf="poolCounter" class="progress">
+    <mat-progress-bar [value]="(100 * poolCounter.step / poolCounter.max)">aaa</mat-progress-bar>
+    {{poolCounter.step}} of {{poolCounter.max}}
+</div>
+
+<table *ngIf="versions">
+    <thead>
+        <tr>
+            <th>version</th>
+            <th>downloads</th>
+            <th>%</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let version of versions">
+            <td>{{version.version}}</td>
+            <td>{{version.downloads}}</td>
+            <td>{{(100 * version.downloads / totalDownloads) | number:'1.2-2'}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            <td>{{ totalDownloads }}</td>
+            <td>100%</td>
+        </tr>
+    </tfoot>
+</table>

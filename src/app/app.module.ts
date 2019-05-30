@@ -14,12 +14,15 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { AccessLogComponent } from './access-log/access-log.component';
+import { AccessLogService } from './access-log/access-log.service';
 import { PackagistComponent } from './packagist/packagist.component';
 import { PackagistService } from './packagist/packagist.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AccessLogComponent,
     PackagistComponent,
   ],
   imports: [
@@ -38,6 +41,7 @@ import { PackagistService } from './packagist/packagist.service';
   exports: [
   ],
   providers: [
+    AccessLogService,
     PackagistService,
   ],
   bootstrap: [AppComponent],

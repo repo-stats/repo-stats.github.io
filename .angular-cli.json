@@ -8,6 +8,7 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
+        "access-log",
         "assets",
         "favicon.ico"
       ],
