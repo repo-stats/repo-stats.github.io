@@ -36,7 +36,7 @@ interface VersionDownloads {
 export class PackagistComponent implements OnInit {
   public fromDate: Date;
   public toDate: Date;
-  public packageName = 'friendsofphp/php-cs-fixer';
+  public packageName: string = 'friendsofphp/php-cs-fixer';
   public versions: VersionDownloads[] | undefined;
   public poolCounter: PoolCounter | undefined;
   public totalDownloads: number | undefined;
