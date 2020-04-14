@@ -2,7 +2,7 @@
   "name": "repo-stats",
   "version": "0.0.0",
   "engines": {
-    "node": "^10"
+    "node": "^13"
   },
   "scripts": {
     "ng": "ng",
