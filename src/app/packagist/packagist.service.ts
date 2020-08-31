@@ -34,7 +34,7 @@ export class PackagistService {
     return this.http.get(
       `https://packagist.org/packages/${name}/stats/${version}.json?average=daily&from=${from}&to=${to}`
     ).map((data: any): number => {
-      return data.values
+      return data.values[version]
         .map((a: null | undefined | string | number): number => {
           if (!a) {
             return 0;
