@@ -1,20 +1,20 @@
 <h2>Packagist repo stats</h2>
 <form>
-    <mat-input-container>
+    <mat-form-field>
         <input matInput placeholder="Provide package name" [(ngModel)]="packageName" name="packageName">
-    </mat-input-container>
+    </mat-form-field>
 
-    <mat-input-container>
+    <mat-form-field>
         <input matInput [matDatepicker]="picker_from" placeholder="Choose a start date" [(ngModel)]="fromDate" name="fromDate">
         <mat-datepicker-toggle matSuffix [for]="picker_from"></mat-datepicker-toggle>
         <mat-datepicker #picker_from></mat-datepicker>
-    </mat-input-container>
+    </mat-form-field>
 
-    <mat-input-container>
+    <mat-form-field>
         <input matInput [matDatepicker]="picker_to" placeholder="Choose a end date" [(ngModel)]="toDate" name="toDate">
         <mat-datepicker-toggle matSuffix [for]="picker_to"></mat-datepicker-toggle>
         <mat-datepicker #picker_to></mat-datepicker>
-    </mat-input-container>
+    </mat-form-field>
 
     <mat-form-field>
         <mat-label>Choose grouping</mat-label>
