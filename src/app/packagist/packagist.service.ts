@@ -40,7 +40,7 @@ export class PackagistService {
             return 0;
           }
 
-          if (typeof a === "string") {
+          if (typeof a === 'string') {
             return parseInt(a, 10);
           }
 
