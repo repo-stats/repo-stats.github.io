@@ -83,15 +83,14 @@ export class PackagistComponent implements OnInit {
         this.poolCounter = new PoolCounter(versions.length);
         const versionsPromises = versions.map((version: string): Promise<VersionDownloads> => {
           return this.packagistService.getPackageVersionDownloads(this.packageName, version, fromDate, toDate)
-            .map((downloads: number): VersionDownloads => {
-              return { version, downloads };
-            })
-            .do((versionDownloads: VersionDownloads): void => {
+            .toPromise()
+            .then((downloads: number): VersionDownloads => {
               if (this.poolCounter) {
                 this.poolCounter.increase();
               }
-            })
-            .toPromise();
+
+              return { version, downloads };
+            });
         });
 
         Promise.all(versionsPromises)
