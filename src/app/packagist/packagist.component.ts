@@ -40,7 +40,7 @@ export class PackagistComponent implements OnInit {
   public versions: VersionDownloads[] | undefined;
   public poolCounter: PoolCounter | undefined;
   public totalDownloads: number | undefined;
-  public grouping: 'MAJOR' | 'MINOR' = 'MINOR';
+  public grouping: 'MAJOR' | 'MINOR' | 'PATCH' = 'MINOR';
   public possibleGroupings = [
     {
       value: 'MAJOR',
@@ -49,6 +49,10 @@ export class PackagistComponent implements OnInit {
     {
       value: 'MINOR',
       label: 'MINOR',
+    },
+    {
+      value: 'PATCH',
+      label: 'PATCH',
     },
   ];
 
@@ -148,8 +152,10 @@ export class PackagistComponent implements OnInit {
 
     if ('MAJOR' === this.grouping) {
       groupedVersion = groupedVersion.replace(/^(\d+).*$/, '$1.*');
-    } else {
+    } else if ('MINOR' === this.grouping) {
       groupedVersion = groupedVersion.replace(/^(\d+\.\d+).*$/, '$1.*');
+    } else {
+      groupedVersion = groupedVersion.replace(/^(\d+\.\d+\.\d+).*$/, '$1.*');
     }
 
     return groupedVersion;
