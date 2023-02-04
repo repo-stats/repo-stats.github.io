@@ -112,7 +112,6 @@
       }
     }
   },
-  "defaultProject": "repo-stats",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
